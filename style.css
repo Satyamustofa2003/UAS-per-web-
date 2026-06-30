@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAN 1 Kota Semarang - Profile Sekolah</title>
+    <style>
+        /* === RESET & GLOBAL === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f9fc;
+            color: #1e2b3a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HEADER & NAVIGASI === */
+        header {
+            background: #0a2f44;
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #f9d342;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #f9d342;
+            color: #0a2f44;
+        }
+
+        /* === SECTION (Halaman) === */
+        .page {
+            display: none;
+            padding: 40px 0;
+            animation: fadeUp 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #0a2f44;
+            border-left: 6px solid #f9d342;
+            padding-left: 18px;
+        }
+
+        /* === HOME / BERANDA === */
+        .hero {
+            background: linear-gradient(135deg, #e1f0fa 0%, #c5ddee 100%);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .hero h2 {
+            font-size: 2.8rem;
+            color: #0a2f44;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        .btn {
+            background: #0a2f44;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #f9d342;
+            color: #0a2f44;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .feature-card {
+            background: #fff;
+            padding: 25px 15px;
+            border-radius: 16px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+        }
+        .feature-card h3 {
+            margin: 10px 0;
+            color: #0a2f44;
+        }
+
+        /* === ABOUT === */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        /* === SERVICES === */
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .service-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-left: 6px solid #f9d342;
+        }
+
+        /* === GALLERY === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: 0.2s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.02);
+        }
+
+        /* === TABEL (di halaman About sebagai contoh) === */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        th {
+            background: #0a2f44;
+            color: #fff;
+            padding: 14px 12px;
+            text-align: left;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e2edf3;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #f1f9ff;
+        }
+
+        /* === FORM (Kontak) === */
+        .contact-form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+            max-width: 600px;
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbdae6;
+            border-radius: 30px;
+            font-family: inherit;
+            background: #f8fcff;
+        }
+        .form-group textarea {
+            border-radius: 20px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background: #0a2f44;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-submit:hover {
+            background: #f9d342;
+            color: #0a2f44;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: #0a2f44;
+            color: #cfdde8;
+            padding: 25px 0;
+            margin-top: 30px;
+            text-align: center;
+            border-top: 4px solid #f9d342;
+        }
+        footer a {
+            color: #f9d342;
+            text-decoration: none;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            nav ul {
+                justify-content: center;
+                margin-top: 12px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            .hero {
+                padding: 30px 15px;
+            }
+        }
+
+        /* utility */
+        .text-center { text-align: center; }
+        .mt-20 { margin-top: 20px; }
+        .mb-20 { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <h1>SMK <span>Bina Nusantara</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active" data-page="home">Beranda</a></li>
+                <li><a href="#" data-page="about">Tentang</a></li>
+                <li><a href="#" data-page="services">Layanan</a></li>
+                <li><a href="#" data-page="gallery">Galeri</a></li>
+                <li><a href="#" data-page="contact">Kontak</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">

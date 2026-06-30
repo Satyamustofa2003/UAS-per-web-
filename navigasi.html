@@ -1,0 +1,44 @@
+<!-- === JAVASCRIPT NAVIGASI (tanpa page reload) === -->
+<script>
+    (function() {
+        // ambil semua link navigasi (termasuk yang di footer)
+        const navLinks = document.querySelectorAll('nav a, footer a');
+        const pages = document.querySelectorAll('.page');
+
+        function showPage(pageId) {
+            // hide all
+            pages.forEach(p => p.classList.remove('active'));
+            // show target
+            const target = document.getElementById(pageId);
+            if (target) target.classList.add('active');
+
+            // update active class pada nav
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // event listener untuk semua link yang punya data-page
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.dataset.page;
+                if (pageId) {
+                    showPage(pageId);
+                }
+            });
+        });
+
+        // tampilkan home secara default
+        showPage('home');
+    })();
+</script>
+
+</body>
+</html>
